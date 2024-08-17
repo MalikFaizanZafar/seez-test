@@ -35,6 +35,8 @@ export class BookingDto {
 }
 
 export class BookingResponseDto {
+  id: string;
+
   car: Partial<Car>;
 
   user: Partial<User>;
