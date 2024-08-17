@@ -78,34 +78,22 @@ Nest is [MIT licensed](LICENSE).
 MongoDB (Deployed on Mongo Atlas Cloud)
 
 ## Links
+- Live API Link - https://seez-test.onrender.com
+- Live API Swagger Link - https://seez-test.onrender.com/api#
+- Postman Collection- (https://api.postman.com/collections/2577878-05277517-59ca-4965-a391-566f474f9a3b?access_key=PMAT-01J5GB6QVN0VBRFC56Z9M5739H)
 
-API Link: https://seez-test.onrender.com 
-Swagger Link: https://seez-test.onrender.com/api#
-
-API is deployed on render platform
-
-Postman Collection Link: https://api.postman.com/collections/2577878-05277517-59ca-4965-a391-566f474f9a3b?access_key=PMAT-01J5GB6QVN0VBRFC56Z9M5739H 
-
-## Swagger
-All API endpoints along with the payloads and responses are documented using swagger
-To test API with swagger, use the auth links (signup/login) to get the access_token. 
-Add the token to swagger authorization.
-All links are protected, use access_token returned from login API to use other endpoints
-create, update and delete car routes are extra protected. Use the super user credentials to use these endpoints
-
-Credentials for normal user
+## User Credentials
 {
   "username": "seez_user",
   "password": "password"
 }
 
-
+## SuperUser Credentials
 Credentials for super user
 {
   "username": "seez_superuser",
   "password": "password"
 }
 
-## Project Information
 
 
