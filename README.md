@@ -95,4 +95,8 @@ MongoDB (Deployed on Mongo Atlas Cloud)
 }
 
 
-
+## Usage
+- Use the signup API to create a new user. Example payload is given in swagger Documentation. Create super user by setting isSuperUser field to be true in the signup API request body.
+- Use the credentials to get the "access_token" from the login API.
+- Use the "access_token" from previous step to access other endpoints. Example payload for each endpoint is shared in swagger docs
+- Create, Update and Delete car endpoint is protected. SuperUser token will be required to access those three endpoints 
