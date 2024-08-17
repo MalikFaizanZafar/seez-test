@@ -89,7 +89,6 @@ MongoDB (Deployed on Mongo Atlas Cloud)
 }
 
 ## SuperUser Credentials
-Credentials for super user
 {
   "username": "seez_superuser",
   "password": "password"
