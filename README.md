@@ -84,7 +84,6 @@ Swagger Link: https://seez-test.onrender.com/api#
 
 API is deployed on render platform
 
-Postman Collection Link: https://api.postman.com/collections/2577878-05277517-59ca-4965-a391-566f474f9a3b?access_key=PMAT-01J5GB6QVN0VBRFC56Z9M5739H 
 
 ## Swagger
 All API endpoints along with the payloads and responses are documented using swagger
