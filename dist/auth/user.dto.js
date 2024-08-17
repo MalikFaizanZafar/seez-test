@@ -59,7 +59,7 @@ __decorate([
     (0, swagger_1.ApiProperty)({
         type: String,
         description: 'username is a required property',
-        default: 'faizanzafar',
+        default: 'seez_user',
     }),
     __metadata("design:type", String)
 ], LoginDto.prototype, "username", void 0);

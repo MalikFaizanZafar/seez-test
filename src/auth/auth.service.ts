@@ -1,11 +1,11 @@
-import { Injectable, ConflictException } from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
 import { User } from './user.entity';
-import { AuthResponseDto, SignupDto } from './user.dto';
+import { AuthResponseDto, LoginDto, SignupDto } from './user.dto';
 
 @Injectable()
 export class AuthService {
@@ -47,6 +47,45 @@ export class AuthService {
       user: {
         username: newUser.username,
         isSuperUser: newUser.isSuperUser,
+      },
+      access_token: jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: '1h',
+      }),
+    } as AuthResponseDto;
+  }
+
+  private async _validateUser(
+    username: string,
+    password: string,
+  ): Promise<User | null> {
+    const user = await this.userRepository.findOne({ where: { username } });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    if (user && !bcrypt.compareSync(password, user.password)) {
+      throw new UnauthorizedException('Invalid Credentials');
+    }
+
+    return user;
+  }
+
+  async login(loginDto: LoginDto): Promise<Promise<AuthResponseDto>> {
+    const { username, password } = loginDto;
+
+    const user = await this._validateUser(username, password);
+
+    const payload = {
+      username: user.username,
+      sub: user.id,
+      isSuperUser: user.isSuperUser,
+    };
+
+    return {
+      user: {
+        username: user.username,
+        isSuperUser: user.isSuperUser,
       },
       access_token: jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: '1h',

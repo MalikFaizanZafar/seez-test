@@ -53,6 +53,34 @@ let AuthService = class AuthService {
             }),
         };
     }
+    async _validateUser(username, password) {
+        const user = await this.userRepository.findOne({ where: { username } });
+        if (!user) {
+            throw new common_1.NotFoundException('User not found');
+        }
+        if (user && !bcrypt.compareSync(password, user.password)) {
+            throw new common_1.UnauthorizedException('Invalid Credentials');
+        }
+        return user;
+    }
+    async login(loginDto) {
+        const { username, password } = loginDto;
+        const user = await this._validateUser(username, password);
+        const payload = {
+            username: user.username,
+            sub: user.id,
+            isSuperUser: user.isSuperUser,
+        };
+        return {
+            user: {
+                username: user.username,
+                isSuperUser: user.isSuperUser,
+            },
+            access_token: jwt.sign(payload, process.env.JWT_SECRET, {
+                expiresIn: '1h',
+            }),
+        };
+    }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([

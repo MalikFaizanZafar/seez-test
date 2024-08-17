@@ -24,6 +24,9 @@ let AuthController = class AuthController {
     async signup(signupDto) {
         return this.authService.createUser(signupDto);
     }
+    async login(loginDto) {
+        return this.authService.login(loginDto);
+    }
 };
 exports.AuthController = AuthController;
 __decorate([
@@ -34,9 +37,11 @@ __decorate([
         type: user_dto_1.AuthResponseDto,
         isArray: false,
         example: {
-            username: 'seez_user',
-            password: 'password',
-            isSuperUser: false,
+            user: {
+                username: 'seez_user',
+                isSuperUser: false,
+            },
+            access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNlZXpfdXNlcjEiLCJzdWIiOiI2NmMwNTUyMjViZjAzZmU2YWMyYmZhZjgiLCJpc1N1cGVyVXNlciI6ZmFsc2UsImlhdCI6MTcyMzg4MDczOCwiZXhwIjoxNzIzODg0MzM4fQ.tzbFjWKoIJ8vnZ24yKLC3pM5AfvjkoxApnswD_FE4oY'
         },
     }),
     __param(0, (0, common_1.Body)()),
@@ -44,6 +49,26 @@ __decorate([
     __metadata("design:paramtypes", [user_dto_1.SignupDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "signup", null);
+__decorate([
+    (0, common_1.Post)('login'),
+    (0, swagger_1.ApiOperation)({ summary: 'Login User' }),
+    (0, swagger_1.ApiCreatedResponse)({
+        description: 'Login Succesfully',
+        type: user_dto_1.AuthResponseDto,
+        isArray: false,
+        example: {
+            user: {
+                username: 'seez_user',
+                isSuperUser: false,
+            },
+            access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNlZXpfdXNlcjEiLCJzdWIiOiI2NmMwNTUyMjViZjAzZmU2YWMyYmZhZjgiLCJpc1N1cGVyVXNlciI6ZmFsc2UsImlhdCI6MTcyMzg4MDczOCwiZXhwIjoxNzIzODg0MzM4fQ.tzbFjWKoIJ8vnZ24yKLC3pM5AfvjkoxApnswD_FE4oY'
+        },
+    }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_dto_1.LoginDto]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "login", null);
 exports.AuthController = AuthController = __decorate([
     (0, swagger_1.ApiTags)('auth'),
     (0, common_1.Controller)('auth'),

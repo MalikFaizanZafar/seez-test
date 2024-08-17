@@ -48,7 +48,7 @@ export class LoginDto {
   @ApiProperty({
     type: String,
     description: 'username is a required property',
-    default: 'faizanzafar',
+    default: 'seez_user',
   })
   username: string;
 
